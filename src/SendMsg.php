@@ -25,9 +25,9 @@ class SendMsg
     /**
      * 发送验证码
      */
-    public static function sendCodeMsg($phone)
+    public static function sendCodeMsg($phone, $tem_id = '')
     {
-        return self::doSend($phone,'code');
+        return self::doSend($phone,'code',['tem_id' => $tem_id]);
     }
 
     /**
@@ -66,7 +66,7 @@ class SendMsg
         $content = array_merge(['sign' => self::$_sign , 'phone' => $phone , 'type' => $type],$content);
 
         $request = json_decode(self::curlRequest(self::DOSEND_URL,false,'post',$content),true);
-        if($_REQUEST['debug'] == 1){
+        if(!empty($_REQUEST['debug'])){
             var_dump($request);exit;
         }
         if($request['code'] == '100'){
