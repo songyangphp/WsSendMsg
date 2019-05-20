@@ -1,0 +1,19 @@
+{
+  "name": "msg/send",
+  "description": "短信服务SDK",
+  "authors": [
+    {
+      "name": "SongYang",
+      "email": "475511896@qq.com"
+    }
+  ],
+  "license": "MIT",
+  "require": {
+    "php": ">=7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "msg\\": "src/"
+    }
+  }
+}
