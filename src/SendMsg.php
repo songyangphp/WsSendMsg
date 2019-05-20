@@ -25,7 +25,7 @@ class SendMsg
      */
     public static function sendCodeMsg($phone)
     {
-        self::doSend($phone,'code');
+        return self::doSend($phone,'code');
     }
 
     public static function checkCode($phone , $code)
@@ -38,7 +38,7 @@ class SendMsg
      */
     public static function sendTemMsg($phone, $type ,array $content)
     {
-        self::doSend($phone,$type,['msg' => json_encode($content)]);
+        return self::doSend($phone,$type,['msg' => json_encode($content)]);
     }
 
     /**
@@ -46,7 +46,7 @@ class SendMsg
      */
     public static function sendOtherMsg($phone , $content)
     {
-        self::doSend($phone,'other',['msg' => $content]);
+        return self::doSend($phone,'other',['msg' => $content]);
     }
 
 
