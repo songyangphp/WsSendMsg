@@ -13,6 +13,8 @@ class SendMsg
 
     const DOSEND_URL = "http://sendmsg.wszx.cc/?app=sendmsg@dosend";
 
+    const CKECK_CODE_URL = "http://sendmsg.wszx.cc/?app=sendmsg@checkcode";
+
     protected static $_sign;
 
     public static function setSign($sign)
@@ -28,9 +30,18 @@ class SendMsg
         return self::doSend($phone,'code');
     }
 
+    /**
+     * 校验验证码
+     */
     public static function checkCode($phone , $code)
     {
-
+        $content = ['code' => $code , 'phone' => $phone];
+        $request = json_decode(self::curlRequest(self::CKECK_CODE_URL,false,'post',$content),true);
+        if($request['code'] == '100'){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**
