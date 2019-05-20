@@ -52,6 +52,8 @@ class SendMsg
 
     protected static function doSend($phone, $type = '', $content = '')
     {
+        $content = array_merge(['sign' => self::$_sign , 'phone' => $phone , 'type' => $type],$content);
+
         $request = json_decode(self::curlRequest(self::DOSEND_URL,false,'post',$content),true);
         if($request['code'] == '100'){
             return true;
