@@ -50,11 +50,14 @@ class SendMsg
     }
 
 
-    protected static function doSend($phone, $type = '', $content = '')
+    protected static function doSend($phone, $type = '', $content = [])
     {
         $content = array_merge(['sign' => self::$_sign , 'phone' => $phone , 'type' => $type],$content);
 
         $request = json_decode(self::curlRequest(self::DOSEND_URL,false,'post',$content),true);
+        if($_REQUEST['debug'] == 1){
+            var_dump($request);exit;
+        }
         if($request['code'] == '100'){
             return true;
         }else{

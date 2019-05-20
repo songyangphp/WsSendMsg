@@ -2,5 +2,5 @@
 /.vscode
 *.log
 *.DS_Store
-test
+test.php
 gitpush.sh
