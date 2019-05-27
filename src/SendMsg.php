@@ -5,7 +5,7 @@
  * Date: 2019-05-20
  * Time: 10:55
  */
-namespace msg;
+namespace wslibs\msg;
 
 
 class SendMsg
