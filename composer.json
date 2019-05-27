@@ -1,5 +1,5 @@
 {
-  "name": "msg/sendmsg",
+  "name": "Wslibs/sendmsg",
   "description": "短信服务SDK",
   "authors": [
     {
