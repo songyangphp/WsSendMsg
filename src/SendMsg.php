@@ -27,7 +27,7 @@ class SendMsg
      */
     public static function sendCodeMsg($phone, $tem_id = '')
     {
-        return self::doSend($phone,'code',['tem_id' => $tem_id]);
+        return self::doSend($phone,['type' => 'code'],$tem_id);
     }
 
     /**
@@ -47,9 +47,9 @@ class SendMsg
     /**
      * 发送变量短信
      */
-    public static function sendTemMsg($phone, $type ,array $content)
+    public static function sendTemMsg($phone, $tem_id ,array $content)
     {
-        return self::doSend($phone,$type,['msg' => json_encode($content)]);
+        return self::doSend($phone,['msg' => json_encode($content)],$tem_id);
     }
 
     /**
@@ -57,14 +57,19 @@ class SendMsg
      */
     public static function sendOtherMsg($phone , $content)
     {
-        return self::doSend($phone,'other',['msg' => $content]);
+        return self::doSend($phone,['type' => 'other','msg' => $content]);
     }
 
 
-    protected static function doSend($phone, $type = '', $content = [])
+    protected static function doSend($phone, $content = [], $tem_id = '')
     {
-        $content = array_merge(['sign' => self::$_sign , 'phone' => $phone , 'type' => $type],$content);
+        $content = array_merge($content,$base_content = [
+            'sign' => self::$_sign,
+            'phone' => $phone,
+            'tem_id' => $tem_id,
+        ]);
 
+        /*var_dump($content);die;*/
         $request = json_decode(self::curlRequest(self::DOSEND_URL,false,'post',$content),true);
         if(!empty($_REQUEST['debug'])){
             var_dump($request);exit;
